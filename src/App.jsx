@@ -16,7 +16,7 @@ const App = () => {
   const tags = useSelector(selectTags);
 
   useEffect(() => {
-    dispatch(fetchTags());
+    dispatch(fetchTags(2));
     console.log(tags);
   }, [dispatch]);
 

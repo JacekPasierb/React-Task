@@ -5,10 +5,10 @@ axios.defaults.baseURL = "https://api.stackexchange.com/2.3/";
 
 export const fetchTags = createAsyncThunk(
   "tags/fetchAll",
-  async (_, thunkAPI) => {
+  async (pageSize, thunkAPI) => {
     try {
       const response = await axios.get(
-        `tags?order=desc&min=10&sort=popular&site=stackoverflow&filter=!bMsg5CXICdlFSp`
+        `tags?pagesize=${pageSize}&order=desc&min=10&sort=popular&site=stackoverflow&filter=!bMsg5CXICdlFSp`
       );
       return response.data.items;
     } catch (error) {

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -6,7 +6,7 @@ import {
   selectIsLoading,
   selectTags,
 } from "./redux/tags/selector.js";
-import TagsList from "./components/TagsList/TagsList.jsx";
+import { TagsList } from "./components/TagsList/TagsList.jsx";
 import { fetchTags } from "./redux/tags/operations.js";
 
 const App = () => {
@@ -14,24 +14,23 @@ const App = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const tags = useSelector(selectTags);
+  const [page, setPage] = useState(1);
+  const [pagesize, setPageSize] = useState(100);
 
   useEffect(() => {
-    dispatch(fetchTags(2));
-    console.log(tags);
-  }, [dispatch]);
+    dispatch(fetchTags({ page, pagesize }));
+  }, [dispatch, page, pagesize]);
 
   return (
-    <>
-      <>
-        {isLoading && !error ? (
-          <p>Wczytywanie Listy Tagów...</p>
-        ) : tags.length === 0 && !error ? (
-          <p>Lista Tagów jest pusta.</p>
-        ) : (
-          <TagsList tags={tags} />
-        )}
-      </>
-    </>
+    <div className="container">
+      {isLoading && !error ? (
+        <p>Wczytywanie Listy Tagów...</p>
+      ) : tags.length === 0 && !error ? (
+        <p>Lista Tagów jest pusta.</p>
+      ) : (
+        <TagsList tags={tags} page={page} setPage={setPage} />
+      )}
+    </div>
   );
 };
 

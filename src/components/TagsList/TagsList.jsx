@@ -26,6 +26,15 @@ export const TagsList = () => {
 
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
+       <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={tags.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -57,15 +66,7 @@ export const TagsList = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={tags.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+     
     </Paper>
   );
 };

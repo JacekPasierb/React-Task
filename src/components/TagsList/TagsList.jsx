@@ -1,72 +1,86 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
+import TablePagination from "@mui/material/TablePagination";
+import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
+import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
-import { useSelector } from "react-redux";
-import { selectTags } from "../../redux/tags/selector";
+import TableCell from "@mui/material/TableCell";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTags } from "../../redux/tags/operations";
+import {
+  selectError,
+  selectIsLoading,
+  selectTags,
+  selectTotal,
+} from "../../redux/tags/selector";
 
 export const TagsList = () => {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const dispatch = useDispatch();
+
   const tags = useSelector(selectTags);
-  console.log("tags", tags);
+  const total = useSelector(selectTotal);
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectError);
+
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  useEffect(() => {
+    dispatch(fetchTags({ page, rowsPerPage }));
+  }, [page, rowsPerPage]);
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
-       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={tags.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {Object.keys(tags[0])
-                .reverse()
-                .map((tag) => (
-                  <TableCell key={tag} style={{ width: 170 }}>
-                    <h3>Tag {tag}</h3>
-                  </TableCell>
-                ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {tags
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((tag) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={tag.name}>
-                    {Object.keys(tags[0])
-                      .reverse()
-                      .map((column) => {
-                        const value = tag[column];
-                        return <TableCell key={column}>{value}</TableCell>;
-                      })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-     
-    </Paper>
+    <>
+      {isLoading && !isError ? (
+        <p>Wczytywanie Listy Tagów...</p>
+      ) : isError ? (
+        <p>Wystąpił błąd podczas wczytywania listy tagów: {isError}</p>
+      ) : tags.length === 0 ? (
+        <p>Lista Tagów jest pusta.</p>
+      ) : (
+        <TableContainer component={Paper}>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 50, 100]}
+            component="div"
+            count={total}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell style={{ width: "100vw" }}>
+                  <h3>Tagi</h3>
+                </TableCell>
+                <TableCell style={{ width: "100vw" }}>
+                  <h3>Powiązane posty</h3>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {tags.map((tag) => (
+                <TableRow key={tag.name}>
+                  <TableCell style={{ width: "100vw" }}>{tag.name}</TableCell>
+                  <TableCell style={{ width: "100vw" }}>{tag.count}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+    </>
   );
 };

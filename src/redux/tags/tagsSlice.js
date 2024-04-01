@@ -14,6 +14,7 @@ const tagsSlice = createSlice({
   name: "tags",
   initialState: {
     items: [],
+    total: 0,
     isLoading: false,
     error: null,
   },
@@ -23,7 +24,8 @@ const tagsSlice = createSlice({
       .addCase(fetchTags.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = action.payload;
+        state.items = action.payload.items;
+        state.total = action.payload.total;
       })
       .addCase(fetchTags.rejected, handleRejected);
   },

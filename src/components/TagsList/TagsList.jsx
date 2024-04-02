@@ -15,6 +15,7 @@ import {
   selectTags,
   selectTotal,
 } from "../../redux/tags/selector";
+import { TableSortLabel } from "@mui/material";
 
 export const TagsList = () => {
   const dispatch = useDispatch();
@@ -26,10 +27,12 @@ export const TagsList = () => {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [sortBy, setSortBy] = useState("popular");
+  const [sortDirection, setSortDirection] = useState("asc");
 
   useEffect(() => {
-    dispatch(fetchTags({ page, rowsPerPage }));
-  }, [page, rowsPerPage]);
+    dispatch(fetchTags({ page, rowsPerPage, sortBy, sortDirection }));
+  }, [page, rowsPerPage, sortBy, sortDirection]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -40,6 +43,10 @@ export const TagsList = () => {
     setPage(0);
   };
 
+  const handleSort = (column) => {
+    setSortBy(column);
+    setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+  };
   return (
     <>
       {isLoading && !isError ? (
@@ -49,37 +56,54 @@ export const TagsList = () => {
       ) : tags.length === 0 ? (
         <p>Lista Tagów jest pusta.</p>
       ) : (
-        <TableContainer component={Paper}>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 50, 100]}
-            component="div"
-            count={total}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell style={{ width: "100vw" }}>
-                  <h3>Tagi</h3>
-                </TableCell>
-                <TableCell style={{ width: "100vw" }}>
-                  <h3>Powiązane posty</h3>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {tags.map((tag) => (
-                <TableRow key={tag.name}>
-                  <TableCell style={{ width: "100vw" }}>{tag.name}</TableCell>
-                  <TableCell style={{ width: "100vw" }}>{tag.count}</TableCell>
+        <Paper sx={{ width: "100%", overflow: "hidden" }}>
+          <TableContainer sx={{ maxHeight: 600 }}>
+            <TablePagination
+              stickyHeader
+              rowsPerPageOptions={[10, 25, 50, 100]}
+              component="div"
+              count={total}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <TableCell style={{ width: "100vw" }}>
+                    <TableSortLabel
+                      active={sortBy === "name"}
+                      direction={sortBy === "name" ? sortDirection : "asc"}
+                      onClick={() => handleSort(`name`)}
+                    >
+                      <h3>Tagi</h3>
+                    </TableSortLabel>
+                  </TableCell>
+                  <TableCell style={{ width: "100vw" }}>
+                    <TableSortLabel
+                      active={sortBy === "popular"}
+                      direction={sortBy === "popular" ? sortDirection : "asc"}
+                      onClick={() => handleSort(`popular`)}
+                    >
+                      <h3>Powiązane posty</h3>
+                    </TableSortLabel>
+                  </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {tags.map((tag) => (
+                  <TableRow key={tag.name}>
+                    <TableCell style={{ width: "100vw" }}>{tag.name}</TableCell>
+                    <TableCell style={{ width: "100vw" }}>
+                      {tag.count}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
       )}
     </>
   );

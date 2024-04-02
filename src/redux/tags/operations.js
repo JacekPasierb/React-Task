@@ -10,12 +10,12 @@ axios.defaults.headers.common["Accept-Encoding"] = "gzip, deflate";
 
 export const fetchTags = createAsyncThunk(
   "tags/fetchAll",
-  async ({ page, rowsPerPage }, thunkAPI) => {
+  async ({ page, rowsPerPage, sortBy,sortDirection }, thunkAPI) => {
     try {
       const response = await axios.get(
         `tags?page=${
           page + 1
-        }&pagesize=${rowsPerPage}&order=desc&sort=popular&site=stackoverflow&filter=!etHx()B6O(4ma)x7t3RP(S`,
+        }&pagesize=${rowsPerPage}&order=${sortDirection}&sort=${sortBy}&site=stackoverflow&filter=!etHx()B6O(4ma)x7t3RP(S`,
         {
           headers: {
             "X-API-Key": VITE_API_KEY,

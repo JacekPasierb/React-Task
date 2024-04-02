@@ -1,24 +1,33 @@
-import { TableSortLabel } from "@mui/material";
-import React from "react";
+import { TableSortLabel } from '@mui/material';
+import React from 'react';
+
 
 export default {
-    title: "Material-UI/TableSortLabel",
-    component: TableSortLabel,
-    argTypes: {
-      // Tutaj możesz definiować kontrolki dla różnych właściwości (props) komponentu
-    //   active={sortBy === "name"}
-    //   direction={sortBy === "name" ? sortDirection : "asc"}
-    //   onClick={() => handleSort(`name`)}
-   
-    
-    },
-  };
+  title: 'Material-UI/TableSortLabel',
+  component: TableSortLabel,
+};
 
-  const Template = (args) => <TableSortLabel />;
+const Template = (args) => <TableSortLabel {...args} />;
+export const BasicTableSortLabel = Template.bind({});
+BasicTableSortLabel.args = {
+  active: false,
+  direction: 'asc',
+  onClick: () => console.log('Sorting clicked'),
+  children: <h3>Tagi</h3>, // To jest Twoja zawartość wewnątrz TableSortLabel
+};
 
-  export const Large = {
-    args: {
-      size: 'large',
-      label: 'Button',
-    },
-  };
+export const ActiveTableSortLabelAsc = Template.bind({});
+ActiveTableSortLabelAsc.args = {
+  active: true,
+  direction: 'asc',
+  onClick: () => console.log('Sorting clicked'),
+  children: <h3>Tagi</h3>, // To jest Twoja zawartość wewnątrz TableSortLabel
+};
+
+export const ActiveTableSortLabelDesc = Template.bind({});
+ActiveTableSortLabelDesc.args = {
+  active: true,
+  direction: 'desc',
+  onClick: () => console.log('Sorting clicked'),
+  children: <h3>Tagi</h3>, // To jest Twoja zawartość wewnątrz TableSortLabel
+};

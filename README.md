@@ -24,6 +24,9 @@ Interfejs użytkownika przeglądarki tagów udostępnianych przez API StackOverf
 
 -`TablePagination` -`TableContainer` -`Paper` -`Table` -`TableHead` -`TableBody` -`TableRow ` -`TableCell`
 
+## Zastosowano
+
+<i class="fab fa-react"></i>
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh

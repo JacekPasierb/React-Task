@@ -1,6 +1,28 @@
-# React + Vite
+# Dokumentacja Zadanie rekrutacyjne - React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Opis Projektu
+
+Interfejs użytkownika przeglądarki tagów udostępnianych przez API StackOverflow.
+
+## Struktura Projektu
+
+|--src/
+||--components
+||--redux
+||--stories
+||--typings
+||--App.tsx
+||--main.tsx
+
+## Strony i Komponenty
+
+- **`main.tsx`**: Plik główny, zawiera konfiguracje i punkt wejściowy dla aplikacji.
+
+- **`app.tsx`**: Plik główny, zawiera komponent interfejsu użytkownika.
+
+- **Komponenty Material UI**:
+
+-`TablePagination` -`TableContainer` -`Paper` -`Table` -`TableHead` -`TableBody` -`TableRow ` -`TableCell`
 
 Currently, two official plugins are available:
 

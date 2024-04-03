@@ -30,7 +30,7 @@ Interfejs użytkownika przeglądarki tagów udostępnianych przez API StackOverf
 <a target="_blank" rel="noopener noreferrer" href="https://reactjs.org/"><img align="center" alt="React" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40" width="40"/></a>&nbsp;&nbsp;
 <a target="_blank" rel="noopener noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img align="center" alt="JavaScript" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" height="40" width="40"/></a>&nbsp;&nbsp;
 <a target="_blank" rel="noopener noreferrer" href="https://storybook.js.org/">
-  <img align="center" alt="Storybook" src="https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png" height="40" width="40" />
+  <img align="center" alt="Storybook" src="https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png" height="40" width="140" />
 </a>&nbsp;&nbsp;
 
 

@@ -30,11 +30,9 @@ Interfejs użytkownika przeglądarki tagów udostępnianych przez API StackOverf
 <a target="_blank" rel="noopener noreferrer" href="https://reactjs.org/"><img align="center" alt="React" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40" width="40"/></a>&nbsp;&nbsp;
 <a target="_blank" rel="noopener noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img align="center" alt="JavaScript" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" height="40" width="40"/></a>&nbsp;&nbsp;
 <a target="_blank" rel="noopener noreferrer" href="https://storybook.js.org/">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/263385/199832481-bbbf5591-6a26-481d-8224-51258cce9b33.png">
-    <img align="center" alt="Storybook" src="https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png" height="40" width="40" />
-  </picture>
+  <img align="center" alt="Storybook" src="https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png" height="40" width="40" />
 </a>&nbsp;&nbsp;
+
 
 Currently, two official plugins are available:
 

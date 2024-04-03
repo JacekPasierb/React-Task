@@ -1,5 +1,5 @@
 # Dokumentacja Zadanie rekrutacyjne - React
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 ## Opis Projektu
 
 Interfejs użytkownika przeglądarki tagów udostępnianych przez API StackOverflow.
@@ -26,11 +26,11 @@ Interfejs użytkownika przeglądarki tagów udostępnianych przez API StackOverf
 
 ## Zastosowano
 
-<i class="fab fa-react"></i>
-Currently, two official plugins are available:
+<a target="_blank" rel="noopener noreferrer" href="https://www.typescriptlang.org/"><img align="center" alt="JavaScript" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" height="40" width="40"/></a>&nbsp;&nbsp;
+<a target="_blank" rel="noopener noreferrer" href="https://reactjs.org/"><img align="center" alt="React" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40" width="40"/></a>&nbsp;&nbsp;
+<a target="_blank" rel="noopener noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img align="center" alt="JavaScript" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" height="40" width="40"/></a>&nbsp;&nbsp;
+<a target="_blank" rel="noopener noreferrer" href="https://storybook.js.org/">
+  <img align="center" alt="Storybook" src="https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png" height="40" width="140" />
+</a>&nbsp;&nbsp;
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-<!-- Link do arkusza stylów FontAwesome -->
-[FontAwesome]: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css

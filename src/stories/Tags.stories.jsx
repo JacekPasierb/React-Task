@@ -5,7 +5,7 @@ import { fetchTags } from "../redux/tags/operations";
 
 export default {
   component: TagsList,
-  title: "Tags",
+  title: "Components/Tags",
   tags: ["autodocs"],
   decorators: [
     (Story) => (

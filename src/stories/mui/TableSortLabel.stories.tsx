@@ -9,6 +9,7 @@ export default {
       control: { type: "boolean" },
     },
     direction: {
+      
       control: "radio",
       options: ["asc", "desc"],
     },

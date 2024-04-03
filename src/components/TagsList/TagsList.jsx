@@ -28,7 +28,7 @@ export const TagsList = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [sortBy, setSortBy] = useState("popular");
-  const [sortDirection, setSortDirection] = useState("asc");
+  const [sortDirection, setSortDirection] = useState("desc");
 
   useEffect(() => {
     dispatch(fetchTags({ page, rowsPerPage, sortBy, sortDirection }));
@@ -59,7 +59,7 @@ export const TagsList = () => {
         <Paper sx={{ width: "100%", overflow: "hidden" }}>
           <TableContainer sx={{ maxHeight: 600 }}>
             <TablePagination
-              stickyHeader
+              stickyheader="true"
               rowsPerPageOptions={[10, 25, 50, 100]}
               component="div"
               count={total}

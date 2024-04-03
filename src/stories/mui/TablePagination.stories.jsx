@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TablePagination from "@mui/material/TablePagination";
 
 export default {
@@ -6,24 +6,45 @@ export default {
   component: TablePagination,
   argTypes: {
     // Tutaj możesz definiować kontrolki dla różnych właściwości (props) komponentu
-    onPageChange: { action: "page changed" },
-    onChangeRowsPerPage: { action: "rows per page changed" },
-    count: 10,
+
+    count: 100,
   },
 };
 
 // Historia (story) dla komponentu TablePagination
-const Template = (args) => <TablePagination {...args} />;
+const Template = (args) => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+    args.onChangePage(event, newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  return (
+    <TablePagination
+      {...args}
+      count={100}
+      page={page}
+      rowsPerPage={rowsPerPage}
+      onRowsPerPageChange={handleChangeRowsPerPage}
+      onPageChange={handleChangePage}
+    />
+  );
+};
 
 export const BasicTablePagination = Template.bind({});
 BasicTablePagination.args = {
-  count: 20,
+  rowsPerPage: 25,
+};
+
+export const OpenTablePagination = Template.bind({});
+OpenTablePagination.args = {
   page: 0,
-  rowsPerPage: 10,
-  onChangePage: (event, newPage) => {
-    console.log("New page:", newPage);
-  },
-  onChangeRowsPerPage: (event) => {
-    console.log("Rows per page:", event.target.value);
-  },
+  rowsPerPage: 50,
 };

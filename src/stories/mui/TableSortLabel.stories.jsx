@@ -5,9 +5,19 @@ import React from 'react';
 export default {
   title: 'Material-UI/TableSortLabel',
   component: TableSortLabel,
+  argTypes: {
+    // Tutaj możesz definiować kontrolki dla różnych właściwości (props) komponentu
+    active:Boolean,
+    direction: {
+       // Określamy, że będzie to lista rozwijana
+        options: ['asc', 'desc'] // Określamy dostępne opcje
+      
+    }
+  },
 };
 
 const Template = (args) => <TableSortLabel {...args} />;
+
 export const BasicTableSortLabel = Template.bind({});
 BasicTableSortLabel.args = {
   active: false,
@@ -17,6 +27,7 @@ BasicTableSortLabel.args = {
 };
 
 export const ActiveTableSortLabelAsc = Template.bind({});
+
 ActiveTableSortLabelAsc.args = {
   active: true,
   direction: 'asc',
@@ -25,6 +36,7 @@ ActiveTableSortLabelAsc.args = {
 };
 
 export const ActiveTableSortLabelDesc = Template.bind({});
+
 ActiveTableSortLabelDesc.args = {
   active: true,
   direction: 'desc',

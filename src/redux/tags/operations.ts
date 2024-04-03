@@ -8,9 +8,19 @@ const VITE_CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET;
 axios.defaults.baseURL = "https://api.stackexchange.com/2.3/";
 axios.defaults.headers.common["Accept-Encoding"] = "gzip, deflate";
 
+interface FetchTagsArgs {
+  page: number;
+  rowsPerPage: number;
+  sortBy: string;
+  sortDirection: string;
+}
+
 export const fetchTags = createAsyncThunk(
   "tags/fetchAll",
-  async ({ page, rowsPerPage, sortBy,sortDirection }, thunkAPI) => {
+  async (
+    { page, rowsPerPage, sortBy, sortDirection }: FetchTagsArgs,
+    thunkAPI
+  ) => {
     try {
       const response = await axios.get(
         `tags?page=${

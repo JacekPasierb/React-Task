@@ -1,6 +1,6 @@
+import * as React from "react";
 import "./App.css";
-
-import { TagsList } from "./components/TagsList/TagsList.jsx";
+import { TagsList } from "./components/TagsList/TagsList";
 
 const App = () => {
   return (

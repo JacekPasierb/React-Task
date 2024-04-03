@@ -8,6 +8,10 @@ import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch } from "../../redux/store";
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
 import { fetchTags } from "../../redux/tags/operations";
 import {
   selectError,
@@ -17,33 +21,43 @@ import {
 } from "../../redux/tags/selector";
 import { TableSortLabel } from "@mui/material";
 
+interface Tag {
+  name: string;
+  count: number;
+}
+
 export const TagsList = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const tags = useSelector(selectTags);
-  const total = useSelector(selectTotal);
-  const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectError);
+  const tags: Tag[] = useSelector(selectTags);
+  const total: number = useSelector(selectTotal);
+  const isLoading: boolean = useSelector(selectIsLoading);
+  const isError: string | null = useSelector(selectError);
 
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [sortBy, setSortBy] = useState("popular");
-  const [sortDirection, setSortDirection] = useState("desc");
+  const [page, setPage] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
+  const [sortBy, setSortBy] = useState<string>("popular");
+  const [sortDirection, setSortDirection] = useState<string>("desc");
 
   useEffect(() => {
     dispatch(fetchTags({ page, rowsPerPage, sortBy, sortDirection }));
-  }, [page, rowsPerPage, sortBy, sortDirection]);
+  }, [dispatch, page, rowsPerPage, sortBy, sortDirection]);
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const handleSort = (column) => {
+  const handleSort = (column: string) => {
     setSortBy(column);
     setSortDirection(sortDirection === "asc" ? "desc" : "asc");
   };
@@ -59,7 +73,6 @@ export const TagsList = () => {
         <Paper sx={{ width: "100%", overflow: "hidden" }}>
           <TableContainer sx={{ maxHeight: 600 }}>
             <TablePagination
-              stickyheader="true"
               rowsPerPageOptions={[10, 25, 50, 100]}
               component="div"
               count={total}
@@ -74,7 +87,7 @@ export const TagsList = () => {
                   <TableCell style={{ width: "100vw" }}>
                     <TableSortLabel
                       active={sortBy === "name"}
-                      direction={sortBy === "name" ? sortDirection : "asc"}
+                      direction={sortBy === "name" ? "desc" : "asc"}
                       onClick={() => handleSort(`name`)}
                     >
                       <h3>Tagi</h3>
@@ -83,7 +96,7 @@ export const TagsList = () => {
                   <TableCell style={{ width: "100vw" }}>
                     <TableSortLabel
                       active={sortBy === "popular"}
-                      direction={sortBy === "popular" ? sortDirection : "asc"}
+                      direction={sortBy === "popular" ? "desc" : "asc"}
                       onClick={() => handleSort(`popular`)}
                     >
                       <h3>Powiązane posty</h3>

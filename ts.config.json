@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "strict": true,
+    "typeRoots": ["./node_modules/@types", "./typings","src/typings"],
+    "types": ["vite/client","vite-env"],
+    
+    "paths": {
+      "vite-env/*": ["src/typings/vite-env/*"]
+    }
+  },
+  "include": ["src"]
+}

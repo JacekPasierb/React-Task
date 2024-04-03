@@ -26,7 +26,8 @@ Interfejs użytkownika przeglądarki tagów udostępnianych przez API StackOverf
 
 ## Zastosowano
 
-<i class="fab fa-react"></i>
+<a target="_blank" rel="noopener noreferrer" href="https://www.typescriptlang.org/"><img align="center" alt="JavaScript" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" height="40" width="40"/></a>&nbsp;&nbsp;
+<a target="_blank" rel="noopener noreferrer" href="https://reactjs.org/"><img align="center" alt="React" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40" width="40"/></a>&nbsp;&nbsp;
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
